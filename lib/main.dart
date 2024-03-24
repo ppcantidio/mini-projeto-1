@@ -1,29 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:miniprojeto1/pages/grid.dart';
-import 'package:miniprojeto1/pages/formulario.dart';
-import 'package:miniprojeto1/pages/imc.dart';
 
-void main() {
-  runApp(const Home());
-}
-
-class Home extends StatelessWidget {
-  const Home({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Navigator(
-        onGenerateRoute: (settings) {
-          return MaterialPageRoute(builder: (context) => const HomePage());
-        },
-      ),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const HomePage(),
+        '/grid': (context) => const GridAtv(),
+        '/form': (context) => const FormAtv(),
+      },
     );
   }
 }
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  const HomePage({Key? key}) : super(key: key);
+
+  Widget _buildButton(BuildContext context, String text, String route) {
+    return ElevatedButton(
+      child: Text(text),
+      onPressed: () {
+        Navigator.pushNamed(context, route);
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,35 +35,8 @@ class HomePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ElevatedButton(
-              child: const Text('Grid'),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const GridAtv()),
-                );
-              },
-            ),
-            ElevatedButton(
-              child: const Text('Form'),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const FormAtv()),
-                );
-              },
-            ),
-            ElevatedButton(
-              child: const Text('IMC'),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          const CalculadoraIMC(title: 'Calculadora IMC')),
-                );
-              },
-            ),
+            _buildButton(context, 'Grid', '/grid'),
+            _buildButton(context, 'Form', '/form'),
           ],
         ),
       ),
