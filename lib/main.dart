@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:miniprojeto1/pages/grid_atv.dart';
-import 'package:miniprojeto1/pages/form_atv.dart';
-import 'package:miniprojeto1/pages/imc_atv.dart';
+import 'package:miniprojeto1/pages/grid.dart';
+import 'package:miniprojeto1/pages/formulario.dart';
+import 'package:miniprojeto1/pages/imc.dart';
 
 void main() {
   runApp(const Home());
